@@ -22,6 +22,7 @@ def parsear_linea (linea):
     return [id_participante,fecha,app,cantidad_uso,tiempo_uso] 
 
 def cargar_datos (ruta):
+    #hola
     '''
     Lee un archivo de datos, rcorre cada una de las lineas del archvio utilziando la funcion parsear_linea. Con la lista devuelta, construye un diccionario de lsitas donde cada clave corresponde a un campo y almacena valores de todas als lineas del archvio. 
     

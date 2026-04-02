@@ -35,17 +35,27 @@ def cargar_datos (ruta):
     datos= diccionario con lista con calves: "id_participante":list [int], "fecha": lista[str], "app": list[str], "cantidad_uso": list [int], "tiempo_uso": list[float]
     
     '''
-    datos={"id_participante": [], "fecha":[], "app":[], "cantidad_uso": [], "tiempo_uso":[]}
-    archivo=open (ruta,"r")
-    for linea in archivo:
-        info= parsear_linea(linea)
-        datos["id_participante"].append(info[0])
-        datos["fecha"].append(info[1])
-        datos["app"].append (info[2])
-        datos["cantidad_uso"].append (info[3])
-        datos["tiempo_uso"].append (info[4])
-    archivo.close()
-    return datos 
+    datos = {
+        "id_participante": [],
+        "fecha": [],
+        "app": [],
+        "cantidad_uso": [],
+        "tiempo_uso": []
+    }
+
+    with open(ruta, "r", encoding="latin-1") as archivo:
+        next(archivo)
+
+        for linea in archivo:
+            partes = linea.strip().split(",")
+
+            datos["id_participante"].append(int(partes[0]))
+            datos["fecha"].append(partes[1])
+            datos["app"].append(partes[2])
+            datos["cantidad_uso"].append(int(partes[3]))
+            datos["tiempo_uso"].append(int(partes[4]))
+
+    return datos
 
         
         

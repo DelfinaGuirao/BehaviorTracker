@@ -5,7 +5,7 @@ Created on Thu Mar 26 15:42:21 2026
 @author: delfi
 """
 
-def procesamiento_datos(datos, id_participante):
+def filtrar_por_participante(datos, id_participante):
     """
     "Recibe un diccionario y un id. A partir del id que recibe, crea un filtro devolviendo un diccionario con solo aquellos id's que coincidan con el del parametro"
 
@@ -47,8 +47,6 @@ def procesamiento_datos(datos, id_participante):
             if "tiempo_uso" not in dicc_procesado:
                 dicc_procesado["tiempo_uso"] = []
             dicc_procesado["tiempo_uso"].append(datos["tiempo_uso"][i])
-        else:
-            print("No hay informacion sobre el id ingresado.")
 
     return dicc_procesado
     

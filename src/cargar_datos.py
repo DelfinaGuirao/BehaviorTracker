@@ -12,17 +12,18 @@ def parsear_linea (linea):
         lista: lista con valores parseados en el siguente orden: [id_partiicpante (int), fecha(str), app (str), cantidad_uso (int), tiempo_uso (float)]
 
     '''
-    linea=linea.strip("\n")
-    campo=linea.split (";")
-    id_participante= int (campo[0])
-    fecha= campo [1]
-    app=campo[2]
-    cantidad_uso=int(campo[3])
-    tiempo_uso= int(campo[4])
-    return [id_participante,fecha,app,cantidad_uso,tiempo_uso] 
+    linea = linea.strip("\n")
+    campos = linea.split(",")
+
+    id_participante = int(campos[0])
+    fecha = campos[1]
+    app = campos[2]
+    cantidad_uso = int(campos[3])
+    tiempo_uso = float(campos[4])
+
+    return [id_participante, fecha, app, cantidad_uso, tiempo_uso]
 
 def cargar_datos (ruta):
-    #hola
     '''
     Lee un archivo de datos, rcorre cada una de las lineas del archvio utilziando la funcion parsear_linea. Con la lista devuelta, construye un diccionario de lsitas donde cada clave corresponde a un campo y almacena valores de todas als lineas del archvio. 
     
@@ -43,17 +44,16 @@ def cargar_datos (ruta):
         "tiempo_uso": []
     }
 
-    with open(ruta, "r", encoding="latin-1") as archivo:
-        next(archivo)
-
+    with open(ruta, "r", encoding="utf-8") as archivo:
+        next(archivo)  #esto saltea el encabezado
         for linea in archivo:
-            partes = linea.strip().split(",")
+            id_p, fecha, app, cant, tiempo = parsear_linea(linea)
 
-            datos["id_participante"].append(int(partes[0]))
-            datos["fecha"].append(partes[1])
-            datos["app"].append(partes[2])
-            datos["cantidad_uso"].append(int(partes[3]))
-            datos["tiempo_uso"].append(int(partes[4]))
+            datos["id_participante"].append(id_p)
+            datos["fecha"].append(fecha)
+            datos["app"].append(app)
+            datos["cantidad_uso"].append(cant)
+            datos["tiempo_uso"].append(tiempo)
 
     return datos
 

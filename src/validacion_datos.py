@@ -1,31 +1,44 @@
 
 def validar_registro(registro):
     """
-    def validar_registro(registro):
+    Valida un registro verificando:
+    - existencia de claves
+    - tipos de datos
+    - valores válidos
 
-        Que hace la funcion: 
-            Verifica los tipo de datos y que los valores no esten vacios ni sean negativos
+    Returns:
+        (bool, str): (True, "") si es válido
+                     (False, mensaje_error) si no lo es
+    """
+    claves = ["id_participante", "fecha", "app", "cantidad_uso", "tiempo_uso"]
 
-        Parameteros:
-            registro(dicc): diccionario con los datos de un registro     
+    for clave in claves:
+        if clave not in registro:
+            return False, f"Falta la clave: {clave}"
 
-        Retornos:
-            bool: True si el registro es valido y False si el registro no es valido
+    try:
+        id_participante = int(registro["id_participante"])
+        fecha = str(registro["fecha"])
+        app = str(registro["app"])
+        cantidad_uso = int(registro["cantidad_uso"])
+        tiempo_uso = float(registro["tiempo_uso"])
 
-        """
-    if "id_participante" not in registro or "fecha" not in registro or "app" not in registro or "cantidad_uso" not in registro or"tiempo_uso" not in registro:
-        return False
-    
-    if registro["fecha"] == "":
-        return ("la fecha ingresada es incorrecta")
-    if registro["app"] == "":
-        return ("el nombre de la aplicacion es incorrecto")
-    if registro["id_participante"] <= 0:
-        return ("el id del participante es incorrecto")
-    if registro["cantidad_uso"] <0:
-        return ("el valor ingresado en cantidad de uso es incorrecto")
-    if registro["tiempo_uso"] <0:
-        return ("el valor ingresado en tiempo de uso es incorrecto")
-    
-    return True
- 
+    except ValueError:
+        return False, "Error en tipos de datos"
+
+    if fecha == "":
+        return False, "Fecha vacía"
+
+    if app == "":
+        return False, "App vacía"
+
+    if id_participante <= 0:
+        return False, "ID inválido"
+
+    if cantidad_uso < 0:
+        return False, "Cantidad de uso inválida"
+
+    if tiempo_uso < 0:
+        return False, "Tiempo de uso inválido"
+
+    return True, ""

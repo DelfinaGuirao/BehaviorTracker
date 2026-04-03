@@ -5,7 +5,7 @@ Created on Thu Mar 26 15:42:46 2026
 @author: delfi
 """
 
-def calcular_tiempo_total(dicc_procesado):
+def calcular_tiempo_total(datos):
     """
     La funcion recibe por parametro un dicc y calcula el tiempo total
 
@@ -18,18 +18,16 @@ def calcular_tiempo_total(dicc_procesado):
        
 
     """
-    tiempo_total=0
-   
-    for tiempo_uso in dicc_procesado["tiempo_uso"]:
+    total = 0
 
-        tiempo_total= tiempo_total + tiempo_uso
-        
-    return tiempo_total 
-        
+    for tiempo in datos["tiempo_uso"]:
+        total += tiempo
+
+    return total
+
         
 
-
-def calcular_promedio_uso(dicc_procesado):
+def calcular_promedio_uso(datos):
     """
     la funcion recibe un dicc y de ahi guarda la cantidad de uso en una variable para luego\
         calcular el promedio de uso
@@ -42,19 +40,17 @@ def calcular_promedio_uso(dicc_procesado):
         num(float): el promedio calculado por el tiempo total y la cantidad de uso
         
         """
-    cant_uso_total=0
+
+    total_tiempo = calcular_tiempo_total(datos)
+    total_usos = 0
     
-    for cantidad_uso in dicc_procesado["cantidad_uso"]:
-        cant_uso_total +=1
-        
-  
-    tiempo_uso=calcular_tiempo_total(dicc_procesado)
-    
-    promedio_uso= tiempo_uso/ cant_uso_total
-    
-    return promedio_uso
-    
- 
+    for cantidad in datos["cantidad_uso"]:
+        total_usos += cantidad
+
+    if total_usos == 0:
+        return 0   
+    promedio= total_tiempo / total_usos
+    return promedio
         
 
     

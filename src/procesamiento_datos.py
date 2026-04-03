@@ -22,30 +22,22 @@ def filtrar_por_participante(datos, id_participante):
         Diccionario procesado con el filtro del id ingresado.
 
     """
-    dicc_procesado = {}
+    dicc_procesado = {
+        "id_participante": [],
+        "fecha": [],
+        "app": [],
+        "cantidad_uso": [],
+        "tiempo_uso": []
+    }
 
     for i in range(len(datos["id_participante"])):
 
         if datos["id_participante"][i] == id_participante:
 
-            if "id_participante" not in dicc_procesado:
-                dicc_procesado["id_participante"] = []
             dicc_procesado["id_participante"].append(datos["id_participante"][i])
-
-            if "fecha" not in dicc_procesado:
-                dicc_procesado["fecha"] = []
             dicc_procesado["fecha"].append(datos["fecha"][i])
-            
-            if "app" not in dicc_procesado:
-                dicc_procesado["app"] = []
             dicc_procesado["app"].append(datos["app"][i])
-
-            if "cantidad_uso" not in dicc_procesado:
-                dicc_procesado["cantidad_uso"] = []
             dicc_procesado["cantidad_uso"].append(datos["cantidad_uso"][i])
-            
-            if "tiempo_uso" not in dicc_procesado:
-                dicc_procesado["tiempo_uso"] = []
             dicc_procesado["tiempo_uso"].append(datos["tiempo_uso"][i])
 
     return dicc_procesado

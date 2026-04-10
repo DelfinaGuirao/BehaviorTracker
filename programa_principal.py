@@ -34,7 +34,10 @@ def main():
  None
      No retorna valores, solo imprime los resultados en pantalla.
  """
-    datos = cargar_datos("datos/datos.csv")
+    try:
+        datos = cargar_datos("datos/datos.csv")
+    except Exception:
+        print ("Error: archivo vacio")
 
     datos_validos = {
         "id_participante": [],
@@ -66,7 +69,7 @@ def main():
 
     if len(datos_filtrados["id_participante"]) == 0:
         print("No hay informacion sobre el id ingresado.")
-        return None
+        return None #no hace el print
 
     tiempo_total = calcular_tiempo_total(datos_filtrados)
     promedio = calcular_promedio_uso(datos_filtrados)

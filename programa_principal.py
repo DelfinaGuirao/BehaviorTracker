@@ -35,7 +35,7 @@ def main():
      No retorna valores, solo imprime los resultados en pantalla.
  """
     try:
-        datos = cargar_datos("datos/datos.csv")
+        datos = cargar_datos("datos\BehaviorTracker_mock_data.csv")
     except Exception:
         print ("Error: archivo vacio")
 

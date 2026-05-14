@@ -10,6 +10,9 @@ def parsear_linea (linea):
     Returns: 
     -------
         lista: lista con valores parseados en el siguente orden: [id_partiicpante (int), fecha(str), app (str), cantidad_uso (int), tiempo_uso (float)]
+        
+    Raises:
+        Exception
 
     '''
     linea = linea.strip("\n")
@@ -20,6 +23,9 @@ def parsear_linea (linea):
     app = campos[2]
     cantidad_uso = int(campos[3])
     tiempo_uso = float(campos[4])
+    
+    if campos == None:
+        raise ValueError("Esta vacio el campo")
 
     return [id_participante, fecha, app, cantidad_uso, tiempo_uso]
 
@@ -46,16 +52,23 @@ def cargar_datos (ruta):
 
     with open(ruta, "r", encoding="utf-8") as archivo:
         next(archivo)  #esto saltea el encabezado
+     
         for linea in archivo:
-            id_p, fecha, app, cant, tiempo = parsear_linea(linea)
+            
+            try:
+                id_p, fecha, app, cant, tiempo = parsear_linea(linea)
+  
+                datos["id_participante"].append(id_p)
+                datos["fecha"].append(fecha)
+                datos["app"].append(app)
+                datos["cantidad_uso"].append(cant)
+                datos["tiempo_uso"].append(tiempo)
+                return datos
+            except ValueError as e: 
+                print (e)
+            
 
-            datos["id_participante"].append(id_p)
-            datos["fecha"].append(fecha)
-            datos["app"].append(app)
-            datos["cantidad_uso"].append(cant)
-            datos["tiempo_uso"].append(tiempo)
-
-    return datos
+   
 
         
         

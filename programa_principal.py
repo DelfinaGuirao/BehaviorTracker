@@ -10,6 +10,10 @@ from src.procesamiento_datos import filtrar_por_participante
 from src.metricas import calcular_tiempo_total, calcular_promedio_uso
 from src.validacion_datos import validar_registro
 
+import os
+os.chdir('datos')
+os.getcwd()
+
 
 def main():
     """
@@ -34,10 +38,15 @@ def main():
  None
      No retorna valores, solo imprime los resultados en pantalla.
  """
+    os.getcwd()
+ 
     try:
-        datos = cargar_datos("datos\BehaviorTracker_mock_data.csv")
-    except Exception:
-        print ("Error: archivo vacio")
+        #datos = cargar_datos("datos//Users//emiliawelyczko//Documents//GitHub//BehaviorTracker//datos//BehaviorTracker_mock_data_error10.csv")
+        datos = cargar_datos("/Users/emiliawelyczko/Documents/GitHub/BehaviorTracker/datos/BehaviorTracker_mock_data_error10.csv")
+    
+    except Exception as e:
+        print('ERRRORRRRRRRRRRRR')
+        print (e)
 
     datos_validos = {
         "id_participante": [],

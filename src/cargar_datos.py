@@ -47,15 +47,21 @@ def cargar_datos (ruta):
     with open(ruta, "r", encoding="utf-8") as archivo:
         next(archivo)  #esto saltea el encabezado
         for linea in archivo:
-            id_p, fecha, app, cant, tiempo = parsear_linea(linea)
+            try:
+                id_p, fecha, app, cant, tiempo = parsear_linea(linea)
 
-            datos["id_participante"].append(id_p)
-            datos["fecha"].append(fecha)
-            datos["app"].append(app)
-            datos["cantidad_uso"].append(cant)
-            datos["tiempo_uso"].append(tiempo)
-
-    return datos
+                datos["id_participante"].append(id_p)
+                datos["fecha"].append(fecha)
+                datos["app"].append(app)
+                datos["cantidad_uso"].append(cant)
+                datos["tiempo_uso"].append(tiempo)
+                return datos
+            except ValueError as e:
+                print (e)
+                """
+                hola
+                """
+                
 
         
         

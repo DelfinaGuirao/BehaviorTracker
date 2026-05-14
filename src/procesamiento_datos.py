@@ -4,7 +4,7 @@ Created on Thu Mar 26 15:42:21 2026
 
 @author: delfi
 """
-
+#chequear que el id exista
 def filtrar_por_participante(datos, id_participante):
     """
     "Recibe un diccionario y un id. A partir del id que recibe, crea un filtro devolviendo un diccionario con solo aquellos id's que coincidan con el del parametro"

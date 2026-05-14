@@ -10,7 +10,6 @@ from src.procesamiento_datos import filtrar_por_participante
 from src.metricas import calcular_tiempo_total, calcular_promedio_uso
 from src.validacion_datos import validar_registro
 
-
 def main():
     """
  Función principal del programa.

@@ -18,6 +18,7 @@ def calcular_tiempo_total(datos):
        
 
     """
+        
     total = 0
 
     for tiempo in datos["tiempo_uso"]:
